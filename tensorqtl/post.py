@@ -36,8 +36,8 @@ def calculate_qvalues(res_df, fdr=0.05, qvalue_lambda=None, logger=None):
     logger.write(f'  * Number of phenotypes tested: {res_df.shape[0]}')
 
     if not res_df['pval_beta'].isnull().all():
+        pval_col = 'pval_beta'
         if res_df.shape[0] > 1:
-            pval_col = 'pval_beta'
             r = stats.pearsonr(res_df['pval_perm'], res_df['pval_beta'])[0]
             logger.write(f'  * Correlation between Beta-approximated and empirical p-values: {r:.4f}')
     else:
